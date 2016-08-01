@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+
+    <!-- Bootstrap -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <!-- Custom CSS -->
+      <!-- Animation -->
+      <!-- <link rel="stylesheet" href="css/animate.css"> -->
+      <!-- Custom CSS -->
+      <link href="<%= url('styles/style.css') %>" rel="stylesheet">
+      <!-- Custom Fonts -->
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+  </head>
+  <body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+        <table class = "navigation">
+          <tr><th><a href="/">Home</th><th><a href="/signup">Sign Up</a></th><th><a href="/login">Log In</th><th><a href="/logout">Log Out</th></tr>
+        </table>
+  </div>
+</nav>
+  
+    <div>
+        
+        <%= yield %>
+      
+    </div>
+    
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</html>

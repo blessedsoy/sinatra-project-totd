@@ -1,0 +1,37 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>TOTD Index page</title>
+
+  </head>
+  <body style = "padding-top:65px">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+<!--         <table class = "navigation">
+          <tr><th><a href="/signup">Sign Up</a></th><th><a href="/login">Log In</th><th><a href="/logout">Log Out</th></tr>
+        </table> -->
+      </div>
+    </div>
+  </div><!-- .container  -->
+Welcome <%= user.username =>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>TOTD: The Topics Of The Day Forum</h1>
+      <br>
+      <% @topics.each do |topic| %>
+      <h2><a href="/topics/<%= topic.id %>"><%= topic.name %></a></h2><br>
+      <% end %> 
+    </div>
+  </div> 
+
+   
+  </body>
+</html>

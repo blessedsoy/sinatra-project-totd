@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>TOTD Index page</title>
+
+  
+  
+  </head>
+
+  <body style="padding-top:65px">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+<!--         <table class = "navigation">
+          <tr><th><a href="/">Home</th><th><a href="/logout">Log Out</th></tr>
+        </table> -->
+      </div>
+    </div>
+  </div>
+  <!-- .container  -->
+  <div class="row">
+    <div class="col-sm-3"></div>
+     <div class="col-sm-6 center">
+        <h1><%= @topic.name %></h1><br>
+        <h3> <a href="<%= @topic.url %>" target= "_blank"> Click for more info</a></h3><br>
+      </div>
+    <div class="col-sm-3"></div>
+  </div> 
+
+  <div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3"></div>
+
+    <div class="col-sm-1 right">
+      <label><%= @user.username %></label>
+    </div>
+    <div class="col-sm-4 center">
+      <form action="/topics/<%= @topic.id %>/comment" method="POST">
+        <input id="content" type="text" name="content" style="width:70%; height: 35px">
+        <input type="submit" value="create" class="btn btn-info">
+      </form> 
+    </div>
+    <div class="col-sm-2">
+      Like Dislike
+    </div>
+    
+    <div class="col-sm-2"></div>
+  </div>
+  </div>
+
+  <div class="container">
+  <table class = "table table-hover comment">
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        User Name
+      </th>
+      <th>
+        Content
+      </th>
+      <th>
+        <button class="btn btn-warning">Edit</button>
+        <button class="btn btn-danger">Delete</button>
+      </th>
+    </tr>
+
+    <% if !(@topic.comments.nil?) %>
+      <% @topic.comments.each do |comment| %>
+      
+      <tr>
+        <th>
+          <%= comment.id %>
+        </th>
+        <th>
+          <%= comment.user.username %>
+        </th>
+        <th>
+          <%= comment.content %> 
+        </th>
+        
+        <th>
+
+          <form method="post" action="/comments/<%=comment.id%>/edit">
+            <input id="hidden" type="hidden" name="_method" value="patch">
+            <input type="text" name="content">
+            <input type="submit" value="edit" class="btn btn-warning">    
+          </form>
+          <form method="post" action="/comments/<%=comment.id%>/delete">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <input type="submit" value="delete" class="btn btn-danger">
+          </form>
+
+        </th>
+      </tr>
+  <!--     </form> -->
+      <% end %>
+    <% end %>
+
+
+  </table>
+  </div>
+
+
+
+  </body>
+</html>
