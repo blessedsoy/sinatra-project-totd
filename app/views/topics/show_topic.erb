@@ -11,7 +11,7 @@
   
   </head>
 
-  <body style="padding-top:65px">
+  <body>
 
   <div class="container">
     <div class="row">
@@ -23,39 +23,28 @@
     </div>
   </div>
   <!-- .container  -->
-  <div class="row">
-    <div class="col-sm-3"></div>
-     <div class="col-sm-6 center">
-        <h1><%= @topic.name %></h1><br>
-        <h3> <a href="<%= @topic.url %>" target= "_blank"> Click for more info</a></h3><br>
-      </div>
-    <div class="col-sm-3"></div>
+  <div class="center">
+    <h1 style="font-size:6em"><%= @topic.name %></h1>
+    <h4> <a href="<%= @topic.url %>" target= "_blank"><div class="btn btn-default">Click for more info</div></a></h4>
   </div> 
 
-  <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3"></div>
+  <div class="container-fluid" style="margin-top: 10%">
+    <div class="row">
+      <div class="col-sm-3 col-xs-3"></div>
 
-    <div class="col-sm-1 right">
-      <label><%= @user.username %></label>
-    </div>
-    <div class="col-sm-4 center">
+      <div class="col-sm-6 col-xs-6 center">
       <form action="/topics/<%= @topic.id %>/comment" method="POST">
-        <input id="content" type="text" name="content" style="width:70%; height: 35px">
-        <input type="submit" value="create" class="btn btn-info">
+        <input id="content" type="text" name="content" placeholder="   Hi ! ( <%= @user.username %> ).  Please leave your comment" style="width:55%; height: 60px">
+        <input type="submit" value="create" class="btn btn-info" style="height:60px">
       </form> 
-    </div>
-    <div class="col-sm-2">
-      Like Dislike
-    </div>
-    
-    <div class="col-sm-2"></div>
+    </div>    
+    <div class="col-sm-3 col-xs-3"></div>
   </div>
   </div>
 
   <div class="container">
   <table class = "table table-hover comment">
-    <tr>
+    <tr id="first">
       <th>
         ID
       </th>
@@ -66,8 +55,8 @@
         Content
       </th>
       <th>
-        <button class="btn btn-warning">Edit</button>
-        <button class="btn btn-danger">Delete</button>
+<!--         <button class="btn btn-warning">Edit</button>
+        <button class="btn btn-danger">Delete</button> -->
       </th>
     </tr>
 
@@ -75,29 +64,29 @@
       <% @topic.comments.each do |comment| %>
       
       <tr>
-        <th>
+        <td>
           <%= comment.id %>
-        </th>
-        <th>
+        </td>
+        <td>
           <%= comment.user.username %>
-        </th>
-        <th>
+        </td>
+        <td>
           <%= comment.content %> 
-        </th>
+        </td>
         
-        <th>
+        <td>
 
-          <form method="post" action="/comments/<%=comment.id%>/edit">
+          <form method="post" action="/comments/<%=comment.id%>/edit" style="display:inline">
             <input id="hidden" type="hidden" name="_method" value="patch">
             <input type="text" name="content">
             <input type="submit" value="edit" class="btn btn-warning">    
           </form>
-          <form method="post" action="/comments/<%=comment.id%>/delete">
+          <form method="post" action="/comments/<%=comment.id%>/delete" style="display:inline">
             <input id="hidden" type="hidden" name="_method" value="delete">
             <input type="submit" value="delete" class="btn btn-danger">
           </form>
 
-        </th>
+        </td>
       </tr>
   <!--     </form> -->
       <% end %>
