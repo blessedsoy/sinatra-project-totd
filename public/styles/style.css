@@ -13,3 +13,29 @@
   position: relative;
   top: 40px;
 }
+
+#first{
+  background-color: #CCCCCC;
+  
+}
+
+.login{
+  background-color: #f2f2f2;
+  position:absolute;
+  top: 40%;
+  left:50%;
+  padding:15px;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.submitButton{
+  position:relative;
+  left: 168px;
+}
+
+.signupButton{
+  position:relative;
+  left: 158px;
+}
