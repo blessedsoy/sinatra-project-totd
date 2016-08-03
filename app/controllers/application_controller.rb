@@ -18,20 +18,13 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  # get '/twitter_today' do
-  #   @twitter_today = TwitterApi.new
-  #   @twitter_today.top_10_trends
-  #   redirect "/"
-  # end
-
-
   helpers do
     def logged_in?
       !!session[:id]
     end
 
     def current_user
-      User.find(session[:id])
+      @current_user ||= User.find(session[:id])
     end
   end
 
