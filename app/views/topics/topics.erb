@@ -18,30 +18,37 @@
       <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   
   </head>
-  <body style="padding-top:65px">
+   <body>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 center">
-
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+<!--         <table class = "navigation">
+          <tr><th><a href="/signup">Sign Up</a></th><th><a href="/login">Log In</th><th><a href="/logout">Log Out</th></tr>
+        </table> -->
+        </div>
       </div>
+    </div><!-- .container  -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 center">
+          Welcome <%= @user.username %><br>
+          <h1>TOTD: The Topics Of The Day Forum</h1>
+          <br><br>
+            <table class = "table table-hover comment">
+              <% @topics.each do |topic| %>
+                <tr>
+                  <th>
+                    <h2 class="center"><a href="/topics/<%= topic.id %>"><%= topic.name %></a></h2>
+                  </th>
+                </tr>
+              <% end %>
+            </table> 
+        </div>
+        <div class="col-sm-2"></div>
+      </div> 
     </div>
-  </div><!-- .container  -->
-
-  <div class="row">
-    <div class="col-sm-12 center">
-    Welcome <%= @user.username %><br>
-      <h1>TOTD: The Topics Of The Day Forum</h1>
-      <br>
-
-      <% @topics.each do |topic| %>
-
-      <h2><a href="/topics/<%= topic.id %>"><%= topic.name %></a></h2><b>
-
-      <% end %>       
-    </div>
-  </div>
-
-
   </body>
 </html>
