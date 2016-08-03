@@ -8,19 +8,20 @@
     <title>TOTD Index page</title>
 
   </head>
-  <body style = "padding-top:65px">
-  <h1>Please sign up to join TOTD forum.</h1>
+  <body>
 
-
-<form action="/signup" method="POST">
-  <label>User Name: </label>
-  <input id="user_name" type="text" name="username"><br>
-  <label>Email: </label>
-  <input id="user_email" type="email" name="email"><br>
-  <label>Password: </label>
-  <input id="user_password" type="password" name="password"><br>
-  <input type="submit" value="Sign Up">
- </form> 
-
+  <div class="container-fluid login">
+    <div style="text-align:center; font-size:2.0em">PLEASE SIGN UP</div>
+    <br>
+    <form action="/signup" method="POST">
+      <label>User Name: </label>
+      <input id="user_name" type="text" name="username"><br>
+      <label>Email: </label>
+      &emsp;&emsp;&emsp;&nbsp;<input id="user_email" type="email" name="email"><br>
+      <label>Password: </label>
+      &nbsp;&nbsp;<input id="user_password" type="password" name="password"><br>
+      <input type="submit" value="Sign Up" class="btn btn-default signupButton">
+    </form> 
+  </div>
 </body>
 </html>
