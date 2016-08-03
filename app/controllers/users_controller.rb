@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       flash[:message] = "Please fill out all fields"
       redirect to "/signup"
     else
-      user = User.create(username: params[:username], email: params[:email], password: params[:password]) 
+      user = User.new(username: params[:username], email: params[:email], password: params[:password]) 
       if user.save
         session[:id] = user.id
         redirect to "/topics"
