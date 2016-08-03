@@ -14,7 +14,7 @@ class TopicsController < ApplicationController
 
 
   get '/topics/:id' do
-    if session[:id] != nil
+    if logged_in?
       @user = User.find_by_id(session[:id])
       @topic = Topic.find_by_id(params[:id])
       erb :'topics/show_topic'
@@ -25,7 +25,7 @@ class TopicsController < ApplicationController
 
   post '/topics/:id/comment' do
 
-    if session[:id] != nil
+    if logged_in?
       @user = User.find_by_id(session[:id])
       @topic = Topic.find_by_id(params[:id])
       if !params[:content].empty?
@@ -41,7 +41,7 @@ class TopicsController < ApplicationController
 
 
   get '/topics/:id/comment' do
-    if session[:id] != nil
+    if logged_in?
       @user = User.find_by_id(session[:id])
       @topic = Topic.find_by_id(params[:id])
       erb :'topics/show_topic'
@@ -51,10 +51,11 @@ class TopicsController < ApplicationController
   end
 
   get '/comments/:id/edit' do
-    if session[:id] != nil
+    if logged_in?
       @user = User.find_by_id(session[:id])
-      
       @comment = Comment.find_by_id(params[:id])
+      @topic = Topic.find(@comment.topic_id)
+
       erb :'topics/show_topic'
     else
       redirect to '/login'
@@ -65,18 +66,19 @@ class TopicsController < ApplicationController
   post '/comments/:id/edit' do
     @user = User.find_by_id(session[:id])
     @comment = Comment.find(params[:id])
+    @topic = Topic.find(@comment.topic_id)
     if !params[:content].empty? && @comment.user_id == @user.id
       @comment.update(content: params[:content])
       redirect "/topics/#{@comment.topic_id}"
     else
-      redirect "/topics/#{@comment.id}/edit"
+      redirect "/comments/#{@comment.id}/edit"
     end
   end
 
   post '/comments/:id/delete' do
     @comment = Comment.find(params[:id])
     @topic = Topic.find(@comment.topic_id)
-    if !session[:id].nil? && @comment.user_id == session[:id]
+    if logged_in? && @comment.user_id == session[:id]
       @comment.delete
       redirect to "/topics/#{@topic.id}"
     else
