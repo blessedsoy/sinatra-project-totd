@@ -1,9 +1,11 @@
-
+require 'rack-flash'
+require 'pry'
 class UsersController < ApplicationController 
 
   get '/signup' do  
     if !session[:id] 
-      erb :'users/create_user'
+      flash[:message] = "Please sign up before you log in"
+      erb :'users/create_user' 
     else 
       redirect to '/topics'
     end
@@ -12,7 +14,10 @@ class UsersController < ApplicationController
   post '/signup' do
     if params[:username] == "" || params[:email]== "" || params[:password] == ""
       flash[:message] = "Please fill out all fields"
-      redirect to "/signup"
+      erb :'users/create_user'
+    elsif User.find_by(username: params[:username]) 
+      flash[:message] = "The User Name is already taken."
+      erb :'users/create_user'
     else
       user = User.new(username: params[:username], email: params[:email], password: params[:password]) 
       if user.save
@@ -25,7 +30,6 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-
     if session[:id] != nil
       redirect to '/topics'
     else
@@ -42,7 +46,8 @@ class UsersController < ApplicationController
       flash[:message] = "You are successfully logged in"
       redirect to '/topics'
     else 
-      redirect to '/signup'
+      flash[:message] = "Invalid Login, Try again."
+      redirect to "/signup"
     end
   end
 

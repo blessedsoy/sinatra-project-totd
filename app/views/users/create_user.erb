@@ -6,18 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>TOTD Index page</title>
-
   </head>
+
   <body>
 
   <div class="container-fluid login">
+  <div id="error_message">
+    <% if flash.has?(:message) %>
+      <%= flash[:message] %>
+    <% end %>    
+  </div>
+  <br> 
+
     <div style="text-align:center; font-size:2.0em">PLEASE SIGN UP</div>
     <br>
     <form action="/signup" method="POST">
       <label>User Name: </label>
       <input id="user_name" type="text" name="username"><br>
       <label>Email: </label>
-      &emsp;&emsp;&emsp;&nbsp;<input id="user_email" type="email" name="email"><br>
+      &emsp;&emsp;&emsp;<input id="user_email" type="email" name="email"><br>
       <label>Password: </label>
       &nbsp;&nbsp;<input id="user_password" type="password" name="password"><br>
       <input type="submit" value="Sign Up" class="btn btn-default signupButton">

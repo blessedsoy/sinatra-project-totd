@@ -30,6 +30,15 @@
   transform: translate(-50%,-50%);
 }
 
+#error_message{
+  text-align: center;
+  color: red;
+}
+
+#welcome{
+  color: grey;
+}
+
 .submitButton{
   position:relative;
   left: 168px;
@@ -39,3 +48,4 @@
   position:relative;
   left: 158px;
 }
+

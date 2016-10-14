@@ -80,10 +80,8 @@ class TopicsController < ApplicationController
     @topic = Topic.find(@comment.topic_id)
     if logged_in? && @comment.user_id == session[:id]
       @comment.delete
-      redirect to "/topics/#{@topic.id}"
-    else
-      redirect '/topics'
     end
+      redirect to "/topics/#{@topic.id}"
   end
 
 
